@@ -25,13 +25,7 @@ class InvalidFormatError(Exception): # Клас InvalidFormatError є власн
 class MyBaseClass(ABC):
     @abstractmethod
     def list_notes(self): # Перелічує всі нотатки у блокноті.
-        if not self.notes:
-            print("No notes available.")
-        else:
-            for i, note in enumerate(self.notes, start=1):
-                print(f"{i}. Title: {note.title}")
-                print(f"   Content: {note.content}")
-                print(f"   Tags: {', '.join(note.tags)}")
+        pass
     
 class Notebook(MyBaseClass): # Клас Notebook представляє собою колекцію нотаток і надає методи для їх управління. Він має наступні атрибути:
                 # notes: Список об'єктів Note.
@@ -115,14 +109,14 @@ class Notebook(MyBaseClass): # Клас Notebook представляє собо
         return sorted_notes
 
 
-    # def list_notes(self): # Перелічує всі нотатки у блокноті.
-    #     if not self.notes:
-    #         print("No notes available.")
-    #     else:
-    #         for i, note in enumerate(self.notes, start=1):
-    #             print(f"{i}. Title: {note.title}")
-    #             print(f"   Content: {note.content}")
-    #             print(f"   Tags: {', '.join(note.tags)}")
+    def list_notes(self): # Перелічує всі нотатки у блокноті.
+        if not self.notes:
+            print("No notes available.")
+        else:
+            for i, note in enumerate(self.notes, start=1):
+                print(f"{i}. Title: {note.title}")
+                print(f"   Content: {note.content}")
+                print(f"   Tags: {', '.join(note.tags)}")
 
     def save_notes(self): # Зберігає нотатки у JSON-файлі.
         data = [{'title': note.title, 'content': note.content, 'tags': note.tags} for note in self.notes]
